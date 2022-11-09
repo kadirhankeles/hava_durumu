@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hava_durumu/screens/detailScreen.dart';
 import 'package:hava_durumu/screens/homeScreen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         backgroundColor: Colors.white
       ),
-      home: HomeScreen(),
+      home: DetailScreen()
     );
     });
   }
