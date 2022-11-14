@@ -1,16 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hava_durumu/core/constant.dart';
+import 'package:hava_durumu/providers/weather_provider.dart';
 import 'package:hava_durumu/widgets/Information.dart';
 import 'package:hava_durumu/widgets/daysWeather.dart';
 import 'package:hava_durumu/widgets/hourlyWeather.dart';
 import 'package:hava_durumu/widgets/topBar.dart';
 import 'package:hava_durumu/widgets/weatherInfo.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final wetProvider = Provider.of<WeatherProvider>(context, listen: false);
+    wetProvider.getWeatherData(context);
+  }
   @override
   Widget build(BuildContext context) {
     List<String> saatlikImage = [
