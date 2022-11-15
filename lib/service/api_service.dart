@@ -10,7 +10,7 @@ Future<currentWeatherResponsive?> getCurrentData(context) async{
     final response =await http.get(Uri.parse
     ("https://api.openweathermap.org/data/2.5/weather?lat=41.011218&lon=28.978178&appid=3f9a2a03d25db304d021bd6bd30d5f8a"+"&units=metric"));
     weatherResponsive = currentWeatherResponsive.fromJson(jsonDecode(response.body));
-    print(response.body);
+    //print(response.body);
     return weatherResponsive;
   } catch (e){
     log(e.toString());

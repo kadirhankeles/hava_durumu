@@ -4,7 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class HourlyWeather extends StatelessWidget {
   final String image;
-  final int hourlyTempature;
+  final double hourlyTempature;
   final String saat;
   const HourlyWeather({super.key, required this.image, required this.hourlyTempature, required this.saat});
 

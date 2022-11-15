@@ -8,7 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider<WeatherProvider>(create: (_) => WeatherProvider())
-  ], child: const MyApp(),));
+  ], builder: (context, child) => const MyApp(),));
 }
 
 class MyApp extends StatelessWidget {

@@ -33,21 +33,16 @@ class _HomeScreenState extends State<HomeScreen> {
     });
     timer.listen((event) => setState(() {
       time = event.hour.toString() + ':' + event.minute.toString();
-    }));*/
-    super.initState();
+    }));*/ 
     wetProvider = Provider.of<WeatherProvider>(context, listen: false);
     wetProvider!.getWeatherData(context);
+    wetProvider!.getData(context, "aaaaaa");
+    super.initState();
+   
+
     
   }
-
-  @override
-  Widget build(BuildContext context) {
-    List<String> saatlikImage = [
-      "assets/sun2.png",
-      "assets/rain.png",
-      "assets/snow.png",
-      "assets/sun2.png",
-    ];
+ List<String> saatlikImage = List.generate(100, (index) => "assets/rain.png");
     List<int> saatlikHava = [
       18,
       19,
@@ -76,6 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
       "Yağmur",
       "Kar",
     ];
+  @override
+  Widget build(BuildContext context) {
+   
 
     return Scaffold(
         appBar: AppBar(
@@ -118,20 +116,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       "Saatlik Hava Durumu",
                       style: Constant.saatlikStyle,
                     )),
-                Container(
-                  height: 15.1.h,
-                  width: double.infinity,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: saatlikImage.length,
-                    itemBuilder: (context, index) {
-                      return HourlyWeather(
-                        image: saatlikImage[index],
-                        hourlyTempature: saatlikHava[index],
-                        saat: saat[index],
-                      );
-                    },
-                  ),
+                Consumer(builder: (context, WeatherProvider value, child) {
+                  return Container(
+                    height: 15.1.h,
+                    width: double.infinity,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: value.wresponse.list!.length,
+                      itemBuilder: (context, index) {
+                        return HourlyWeather(
+                          image: saatlikImage[index],
+                          hourlyTempature: value.wresponse.list![index].main!.temp!.toDouble(),
+                          saat: value.wresponse.list![index].dtTxt.toString().split(" ").last.toString().substring(0,5),
+                        );
+                      },
+                    ),
+                  );
+                },
                 ),
                 SizedBox(
                   height: 1.5.h,

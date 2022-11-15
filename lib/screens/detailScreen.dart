@@ -20,11 +20,11 @@ class DetailScreen extends StatelessWidget {
       "assets/snow.png",
       "assets/sun2.png",
     ];
-    List<int> saatlikHava = [
-      18,
-      19,
-      20,
-      17,
+    List<double> saatlikHava = [
+      18.1,
+      19.1,
+      20.1,
+      17.1,
     ];
     List<String> saat = ["4.00", "5.00", "6.00", "7.00"];
     List<String> detailImage = [
