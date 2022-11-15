@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hava_durumu/core/constant.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../providers/weather_provider.dart';
 
 class WeatherInfo extends StatelessWidget {
   final String date; 
   final String time;
   final String weatherImage;
-  final int tempature;
+  final double tempature;
   final String forecast;
   final String update;
   const WeatherInfo({super.key, required this.date, required this.time, required this.weatherImage, required this.tempature, required this.forecast, required this.update});
@@ -31,7 +34,7 @@ class WeatherInfo extends StatelessWidget {
           Row(
             children: [
               Text('$date', style: Constant.dateStyle,),
-              SizedBox(width: 26.w,),
+              SizedBox(width: 30.w,),
               Text("$time", style: Constant.dateStyle,),
             ],
           ),
@@ -62,7 +65,10 @@ class WeatherInfo extends StatelessWidget {
           children: [
             Text("$update", style: TextStyle(color: Colors.white, fontSize: 12),),
             SizedBox(width: 1.w,),
-            Icon(Icons.refresh_outlined, size: 16, color: Colors.white,)
+            GestureDetector(onTap: () {
+             Provider.of<WeatherProvider>(context, listen: false).getWeatherData(context);
+            }, child: Icon(Icons.refresh_outlined, size: 16, color: Colors.white,))
+            
           ],
         ),
         ],
