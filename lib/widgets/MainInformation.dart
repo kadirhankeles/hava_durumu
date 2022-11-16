@@ -8,7 +8,7 @@ class MainInformation extends StatelessWidget {
   final String date; 
   final String time;
   final String weatherImage;
-  final int tempature;
+  final String tempature;
   final String forecast;
   final String update;
   const MainInformation({super.key, required this.date, required this.time, required this.weatherImage, required this.tempature, required this.forecast, required this.update});

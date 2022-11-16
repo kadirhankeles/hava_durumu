@@ -34,7 +34,7 @@ class WeatherInfo extends StatelessWidget {
           Row(
             children: [
               Text('$date', style: Constant.dateStyle,),
-              SizedBox(width: 30.w,),
+              SizedBox(width: 28.w,),
               Text("$time", style: Constant.dateStyle,),
             ],
           ),

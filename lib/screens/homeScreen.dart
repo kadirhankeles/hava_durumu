@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hava_durumu/core/constant.dart';
 import 'package:hava_durumu/providers/weather_provider.dart';
+import 'package:hava_durumu/screens/detailScreen.dart';
 import 'package:hava_durumu/widgets/Information.dart';
 import 'package:hava_durumu/widgets/daysWeather.dart';
 import 'package:hava_durumu/widgets/hourlyWeather.dart';
@@ -117,17 +118,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: Constant.saatlikStyle,
                     )),
                 Consumer(builder: (context, WeatherProvider value, child) {
-                  return Container(
+                  return value.isLoadingFive? CircularProgressIndicator():Container(
                     height: 15.1.h,
                     width: double.infinity,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: value.wresponse.list!.length,
                       itemBuilder: (context, index) {
-                        return HourlyWeather(
-                          image: saatlikImage[index],
-                          hourlyTempature: value.wresponse.list![index].main!.temp!.toDouble(),
-                          saat: value.wresponse.list![index].dtTxt.toString().split(" ").last.toString().substring(0,5),
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailScreen(index: index,),));
+                          },
+                          child: HourlyWeather(
+                            image: saatlikImage[index],
+                            hourlyTempature: value.wresponse.list![index].main!.temp!.toDouble(),
+                            saat: value.wresponse.list![index].dtTxt.toString().split(" ").last.toString().substring(0,5),
+                          ),
                         );
                       },
                     ),

@@ -5,12 +5,16 @@ import 'package:hava_durumu/core/constant.dart';
 import 'package:hava_durumu/widgets/MainInformation.dart';
 import 'package:hava_durumu/widgets/detailSection.dart';
 import 'package:hava_durumu/widgets/topBarTwo.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../providers/weather_provider.dart';
 import '../widgets/hourlyWeather.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  final int index;
+  const DetailScreen({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -53,25 +57,29 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          Container(
-            width: double.infinity,
-            height: 40.h,
-            decoration: BoxDecoration(gradient: Constant.renkGecis),
-            child: Column(
-              children: [
-                TopBarTwo(
-                  location: 'Türkiye, Ankara',
-                ),
-                MainInformation(
-                  date: "Senin, 20 Desember 2021",
-                  time: '3.30 PM',
-                  weatherImage: 'assets/rain.png',
-                  tempature: 18,
-                  forecast: 'Yağmurlu',
-                  update: 'Son Güncelleme 3 PM',
-                ),
-              ],
-            ),
+          Consumer(
+            builder: (context, WeatherProvider value, child) {
+              return Container(
+              width: double.infinity,
+              height: 40.h,
+              decoration: BoxDecoration(gradient: Constant.renkGecis),
+              child: Column(
+                children: [
+                  TopBarTwo(
+                    location: 'Türkiye, ${value.wresponse.city!.name}',
+                  ),
+                  MainInformation(
+                    date: "- ${DateFormat("EEEE").format(DateTime.now())}, ${DateFormat('dd-MM-yyyy').format(DateTime.now())}",
+                    time: '',
+                    weatherImage: 'assets/rain.png',
+                    tempature: (value.wresponse.list![index].main!.temp!.toStringAsFixed(1)),
+                    forecast: '${value.wresponse.list![index].weather![0].main.toString().split('.').last}',
+                    update: 'Son Güncelleme 3 PM',
+                  ),
+                ],
+              ),
+            );
+            },
           ),
           Padding(
             padding: EdgeInsets.only(left: 1.5.h, right: 1.5.h),
