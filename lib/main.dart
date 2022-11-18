@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:get/get.dart';
 import 'package:hava_durumu/providers/weather_provider.dart';
 import 'package:hava_durumu/screens/detailScreen.dart';
 import 'package:hava_durumu/screens/homeScreen.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return ResponsiveSizer(builder: (p0, p1, p2) {
-      return MaterialApp(
+      return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

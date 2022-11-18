@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hava_durumu/core/constant.dart';
 import 'package:hava_durumu/providers/weather_provider.dart';
 import 'package:hava_durumu/screens/detailScreen.dart';
+import 'package:hava_durumu/service/logging.dart';
 import 'package:hava_durumu/widgets/Information.dart';
 import 'package:hava_durumu/widgets/daysWeather.dart';
 import 'package:hava_durumu/widgets/hourlyWeather.dart';
@@ -177,4 +178,8 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ));
   }
+  void EkrandaGoster(){
+    
+  }
 }
+

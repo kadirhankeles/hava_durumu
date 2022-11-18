@@ -2,7 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:hava_durumu/service/logging.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../models/current_weather_responsive.dart';
 import 'package:http/http.dart' as http;
@@ -33,6 +36,20 @@ Future<currentWeatherResponsive?> getCurrentData(context) async {
     print(weatherResponsive.main!.temp);
     //print(response.body);
 
+
+   switch(response.statusCode){
+      case 200:
+      {
+      Get.snackbar("200", "Durum Kodu (Başarılı)");
+      break;
+      };
+      case 403: {
+        Get.snackbar("403", "Durum Kodu (Erişim İzni Sorunu)");
+        break;
+      }
+      
+
+    }
     return weatherResponsive;
   } catch (e) {
     log(e.toString());
