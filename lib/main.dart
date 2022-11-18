@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:hava_durumu/providers/weather_provider.dart';
 import 'package:hava_durumu/screens/detailScreen.dart';
 import 'package:hava_durumu/screens/homeScreen.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         backgroundColor: Colors.white
       ),
-      home: HomeScreen()
+      home: HomeScreen(),
+      builder: EasyLoading.init(),
     );
     });
   }
